@@ -1,5 +1,6 @@
 package rostelecom.web;
 
+import com.google.gson.Gson;
 import rostelecom.model.ColorItem;
 import rostelecom.repository.ColorRepository;
 import rostelecom.service.Config;
@@ -24,7 +25,11 @@ public class ColorsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ColorItem> items = colorRepository.getAllSorted();
-        req.setAttribute("items", items);
+
+        Gson gson = new Gson();
+        String jsonItems = gson.toJson(items);
+
+        req.setAttribute("jsonItems", jsonItems);
         req.getRequestDispatcher("/colors.jsp").forward(req, resp);
     }
 }
