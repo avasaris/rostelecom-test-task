@@ -1,4 +1,4 @@
-# Особенности реализации.
+# Особенности реализации первой части задания.
 * В данный момент используется БД Postgres вместо Oracle, как более привычная и доступная в данный момент.
 * Параметры подключения к БД прописаны в файле rostelecom.properties.
 * В методе **ColorRepository.getAllSorted()** будет проведена принудительная инициализация коллекции, если от БД не получены значения.
@@ -28,8 +28,26 @@
 ```
 * Во фронтенд части используются библиотеки [jquery](https://jquery.com/) и [json2html](http://json2html.com/). Обе подгружаются через CDN.
 
+# Ответ на вторую часть зададания.
+Исходя из документации 
+- [Calling Stored Procedures in Java DB and MySQL](https://docs.oracle.com/javase/tutorial/jdbc/basics/storedprocedures.html#calling_javadb_mysql)
+- [Calling PL/SQL from Java](https://docs.oracle.com/cd/E11882_01/java.112/e10588/chseven.htm#JJDEV13295)
+  
+код будет следующим:
+```java
+   Java.sql.Connection conn = ...
+   
+   String inputString = "Hello, Oracle!";
+   
+   CallableStatement cstmt = conn.prepareCall("{? = CALL get_info(?)}");
+   cstmt.registerOutParameter(1, Types.VARCHAR);
+   cstmt.setString(2, inputString);
+   cstmt.executeUpdate();
+   
+   String resultString = cstmt.getString(1);
+```
 
-# Задача.
+# Тестовое задание.
 
 1. Основное задание:
 
