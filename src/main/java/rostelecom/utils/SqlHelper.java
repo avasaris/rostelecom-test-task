@@ -26,7 +26,7 @@ public class SqlHelper {
         }
     }
 
-    public <T> T transactionalExecute(SqlTransaction<T> executor) {
+    public <T> T transactionalExecute(SqlTransaction<T> executor) throws SQLException {
         try (Connection conn = connectionFactory.getConnection()) {
             try {
                 conn.setAutoCommit(false);
@@ -37,8 +37,9 @@ public class SqlHelper {
                 conn.rollback();
                 throw ExceptionUtil.convertException(e);
             }
-        } catch (SQLException e) {
-            throw new StorageException(e);
         }
+//        catch (SQLException e) {
+//            throw new StorageException(e);
+//        }
     }
 }

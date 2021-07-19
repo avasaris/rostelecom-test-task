@@ -7,6 +7,7 @@ import rostelecom.utils.StaticCollection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,23 +25,26 @@ public class ColorRepository implements Repository {
 
     @Override
     public List<ColorItem> getAllSorted() {
-        return sqlHelper.transactionalExecute(conn -> {
-            List<ColorItem> items = new ArrayList<>();
+        List<ColorItem> items = new ArrayList<>();
 
-            try (PreparedStatement ps = conn.prepareStatement("SELECT color_number, name FROM \"TSVETA\" ORDER BY color_number")) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    items.add(new ColorItem(rs.getString("color_number"), rs.getString("name")));
+        try {
+            sqlHelper.transactionalExecute(conn -> {
+                try (PreparedStatement ps = conn.prepareStatement("SELECT color_number, name FROM \"TSVETA\" ORDER BY color_number")) {
+                    ResultSet rs = ps.executeQuery();
+                    while (rs.next()) {
+                        items.add(new ColorItem(rs.getString("color_number"), rs.getString("name")));
+                    }
                 }
-            }
 
+                return items;
+            });
+        } catch (SQLException throwables) {
             // if your database has given up
-            if (items.size() == 0) {
-                StaticCollection.init(items);
-            }
+            StaticCollection.init(items);
+        }
 
-            return items;
-        });
+        return items;
+
     }
 
 
