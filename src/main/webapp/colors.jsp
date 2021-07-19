@@ -30,13 +30,13 @@
 <script>
 
     <jsp:useBean id="jsonItems" scope="request" type="java.lang.String"/>
-    let items='${jsonItems}';
+    let items = '${jsonItems}';
 
     let template = {
         '<>': 'tr',
         'html': [
             {'<>': 'td', 'html': "\${number}"},
-            {'<>': 'td', 'class': 'show-my-value','html': "\${name}"}
+            {'<>': 'td', 'class': 'show-my-value', 'html': "\${name}"}
         ]
     };
 

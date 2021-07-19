@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorRepository implements Repository{
+public class ColorRepository implements Repository {
     private final SqlHelper sqlHelper;
 
     public ColorRepository(String dbUrl, String dbUser, String dbPassword) {
