@@ -1,6 +1,11 @@
 # Особенности реализации первой части задания.
-* В данный момент используется БД Postgres вместо Oracle, как более привычная и доступная в данный момент.
-* Параметры подключения к БД прописаны в файле rostelecom.properties.
+
+* Ссылка на WAR файл [скачать](https://github.com/avasaris/rostelecom-test-task/blob/master/target/rostelecom-1.0-SNAPSHOT.war)
+  
+
+* Используется БД Postgres вместо Oracle, как более привычная и доступная в данный момент.
+* Параметры подключения к БД прописаны в файле config/rostelecom.properties.
+* Создать базу и заполнить ее можно, используя файлы  config/init_PG_DB.sql и config/populate_PG_DB.sql
 * В методе **ColorRepository.getAllSorted()** будет проведена принудительная инициализация коллекции, если от БД не получены значения.
 * Использована IDE IntelliJ IDEA, как более привычная.
 * Проект собран с использованием Maven. Зависимости
@@ -26,7 +31,7 @@
             <version>2.8.6</version>
         </dependency>
 ```
-* Во фронтенд части используются библиотеки [jquery](https://jquery.com/) и [json2html](http://json2html.com/). Обе подгружаются через CDN.
+* Во фронтенд части используются библиотеки [jquery](https://jquery.com/) и [json2html](https://json2html.com/). Обе подгружаются через CDN.
 
 # Ответ на вторую часть зададания.
 Исходя из документации 
