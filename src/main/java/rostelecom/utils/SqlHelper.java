@@ -1,7 +1,5 @@
 package rostelecom.utils;
 
-import rostelecom.exception.StorageException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,8 +36,5 @@ public class SqlHelper {
                 throw ExceptionUtil.convertException(e);
             }
         }
-//        catch (SQLException e) {
-//            throw new StorageException(e);
-//        }
     }
 }
