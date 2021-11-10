@@ -9,7 +9,7 @@
     <servlet>
         <servlet-name>colorsServlet</servlet-name>
         <servlet-class>rostelecom.web.ColorsServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>colorsServlet</servlet-name>
